@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<body>
+    <script>
+
+        function computerPlay() {
+            let move;
+            let rand;
+            rand = Math.random();
+            
+            if (rand < 0.33) {
+                move = "rock";
+            } else if (rand < 0.66) {
+                move = "paper";
+            }else {
+                move = "scissors";
+            }
+
+            return(move);
+        }
+
+    </script>
+</body>
