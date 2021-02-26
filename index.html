@@ -3,14 +3,15 @@
 <body>
     <script>
 
-        function computerPlay() {
+        //selecting random move
+        function computerPlay(){        
             let move;
             let rand;
             rand = Math.random();
             
-            if (rand < 0.33) {
+            if (rand < 0.33){
                 move = "rock";
-            } else if (rand < 0.66) {
+            } else if (rand < 0.66){
                 move = "paper";
             }else {
                 move = "scissors";
@@ -19,5 +20,26 @@
             return(move);
         }
 
+        //playing one round of RPS and returning result
+        function playRound(playerSelection, computerSelection){
+            playerSelection = playerSelection.toLowerCase();
+
+            
+             if (playerSelection === computerSelection){
+                //condition where its a tie
+                return("It's a tie! Both played " + playerSelection);
+            }
+            else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper"){
+                //condition where player wins
+                return(`You Win! ${playerSelection} beats ${computerSelection}`);
+            }
+            else if (playerSelection === "scissors" && computerSelection === "rock" || playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors"){
+                //condition where player losses
+                return(`You lose! ${computerSelection} beats ${playerSelection}`);
+            }else if(playerSelection !== "rock" || "paper" || "scissors"){
+                return("invalid input")
+            }
+            else return("something weird happened");
+        }
     </script>
 </body>
