@@ -27,19 +27,23 @@
             
              if (playerSelection === computerSelection){
                 //condition where its a tie
-                return("It's a tie! Both played " + playerSelection);
+                console.log("It's a tie! Both played " + playerSelection);
+                return("tie")
             }
             else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper"){
                 //condition where player wins
-                return(`You Win! ${playerSelection} beats ${computerSelection}`);
+                console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+                return("player")
             }
             else if (playerSelection === "scissors" && computerSelection === "rock" || playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors"){
                 //condition where player losses
-                return(`You lose! ${computerSelection} beats ${playerSelection}`);
-            }else if(playerSelection !== "rock" || "paper" || "scissors"){
-                return("invalid input")
+                console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+                return("com")
             }
-            else return("something weird happened");
+            else if(playerSelection !== "rock" || "paper" || "scissors"){
+                console.log("invalid input")
+            }
+            else console.log("something weird happened");
         }
     </script>
 </body>
