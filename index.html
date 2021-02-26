@@ -45,5 +45,19 @@
             }
             else console.log("something weird happened");
         }
+
+        function incrementer(input, playerScore, comScore){
+            if (input === "player"){
+                playerScore++;
+            }
+            else if (input === "com"){
+                comScore++;
+            }
+            else if (input === "tie") {
+                playerScore++
+                comScore++
+            }
+            else {}
+        }
     </script>
 </body>
