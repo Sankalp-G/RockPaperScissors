@@ -1,0 +1,54 @@
+header{
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    font-size: 47px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+#RPS_icon{
+    height: 45px;
+    margin-left: 4px;
+    margin-top: 4px;
+}
+
+body{
+    justify-content: center;
+}
+
+#main_container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 100px;
+}
+
+#button_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1;
+    border-radius: 400px;
+    box-shadow: 5px 5px 10px lightgray, -5px -5px 10px lightgray, -5px 5px 10px lightgray, 5px -5px 10px lightgray;
+    height: 350px;
+    width: 750px;
+}
+
+#button{
+    height: 300px;
+    margin: 25px;
+    border: 1;
+    border-radius: 50%;
+}
+
+#button_img{
+    height: 300px;
+}
+
+#button :hover{
+    border: 1;
+    border-radius: 50%;
+    box-shadow: 3px 3px 10px lightgray, -3px -3px 10px lightgray, -3px 3px 10px lightgray, 3px -3px 10px lightgray;
+}
