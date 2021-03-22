@@ -90,3 +90,22 @@ console.log("something went wrong");
 playerScore = 0;
 comScore = 0;
 }
+
+
+
+
+
+//dom manipulation section
+
+const menu_buttons = document.querySelectorAll('#menu_button_img');
+const description = document.querySelector('#description')
+
+menu_buttons.forEach((button) => {
+    button.addEventListener("mouseenter", () => {
+        if(button.attributes.src.nodeValue == "assets/icons/5round_icon.png"){
+            description.textContent="A match where the first one to get 5 points wins";
+        }else if(button.attributes.src.nodeValue == "assets/icons/endless_icon.png"){
+            description.textContent="A match where the game goes on simply forever";
+        }
+    });
+});
