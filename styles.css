@@ -9,10 +9,8 @@ header{
     margin-top: 50px;
 }
 
-#RPS_icon{
-    height: 45px;
-    margin-left: 4px;
-    margin-top: 4px;
+#score_container{
+    height: 50px;
 }
 
 body{
@@ -22,7 +20,6 @@ body{
 #main_container{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
 }
 
 #button_container{
@@ -33,7 +30,12 @@ body{
     border-radius: 400px;
     box-shadow: 5px 5px 10px lightgray, -5px -5px 10px lightgray, -5px 5px 10px lightgray, 5px -5px 10px lightgray;
     height: 350px;
-    width: 750px;
+    width: 1100px;
+    transition: width 0.5s;
+}
+
+.button_container2{
+    width: 1125px !important;
 }
 
 #button{
@@ -60,9 +62,8 @@ body{
 }
 
 #subtitle{
-    margin: 20px;
-    margin-left: 115px;
-    margin-right: 80px;
+    padding: 20px;
+    padding-right: 0px;
     font-size: 50px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgb(105, 105, 105);
