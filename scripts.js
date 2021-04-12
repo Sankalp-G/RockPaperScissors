@@ -104,8 +104,12 @@ menu_buttons.forEach((button) => {
     button.addEventListener("mouseenter", () => {
         if(button.attributes.src.nodeValue == "assets/icons/5round_icon.png"){
             description.textContent="A match where the first one to get 5 points wins";
-        }else if(button.attributes.src.nodeValue == "assets/icons/endless_icon.png"){
+        }
+        else if(button.attributes.src.nodeValue == "assets/icons/endless_icon.png"){
             description.textContent="A match where the game goes on simply forever";
+        }
+        else if(button.attributes.src.nodeValue == "assets/icons/single_icon.png"){
+            description.textContent="One single round of rock paper scissors";
         }
     });
 });
