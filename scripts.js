@@ -166,7 +166,12 @@ function gameMode(){
         button.addEventListener("transitionend", () =>{
             if(button_container.firstElementChild == menu_button_container && booper === true){
                 button_container.removeChild(menu_button_container)
+
+                game_button_container.setAttribute("style", "opacity: 0;")
                 button_container.appendChild(game_button_container)
+                setTimeout(function(){
+                    game_button_container.setAttribute("style", "opacity: 1; transition: 1s;")
+                }, 0);
                 booper = false;
                 }
         });
@@ -181,11 +186,15 @@ function gameMode(){
     if(button_container.firstElementChild !== menu_button_container){
         button_container.appendChild(menu_button_container)
         button_container.removeChild(game_button_container)
-        }
 
         menu_button_img.forEach((button) => {
-            button.classList.remove('menu_button_img2');
+            setTimeout(function(){
+                button.classList.remove('menu_button_img2');
+            }, 20);
         });
+    }
+
+        
 
     button_container.classList.remove('button_container2');
 

@@ -75,13 +75,16 @@ body{
 
 #menu_button_img{
     height: 300px;
-    transition: 0.4s !important;
+    transition: 0.5s !important;
+    opacity: 1;
+    transition: border-radius 0s;
 }
 
 .menu_button_img2{
     height: 252px !important;
     transition: 0.4s !important;
     opacity: 0 !important;
+    transition: border-radius 0s;
 }
 
 #game_button_img{
@@ -91,7 +94,8 @@ body{
 }
 
 #button :hover{
-    border: 1;
+    border: 0;
+    transition: border-radius 0s;
     border-radius: 50%;
     box-shadow: 3px 3px 20px lightgray, -3px -3px 20px lightgray, -3px 3px 20px lightgray, 3px -3px 20px lightgray;
 }
