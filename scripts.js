@@ -152,8 +152,6 @@ rock_button.appendChild(rock_img)
 paper_button.appendChild(paper_img)
 scissor_button.appendChild(scissor_img)
 
-//button_container.appendChild(game_button_container)
-
 
 function gameMode(){
     button_container.classList.add('button_container2');
@@ -193,4 +191,47 @@ function gameMode(){
 
     subtitle_container.setAttribute("style", "opacity: 100; transition: 1s;")
 
+}
+
+
+
+
+
+const score_section = document.querySelector('#score_section')
+const score_container = document.querySelector('#score_container')
+
+score_section.removeChild(score_container)
+score_container.setAttribute("style", "opacity: 0;")
+
+
+function expandScore(){
+    let beeper = true;
+
+    score_section.setAttribute("style", "height:200px; transition: 1s;")
+
+    score_section.addEventListener("transitionend", () => {
+
+        if(beeper == true){
+            score_section.appendChild(score_container)
+
+            setTimeout(function(){
+                score_container.setAttribute("style", "opacity: 1; transition: 1s;")
+            }, 0);
+
+            beeper = false;
+        }
+    });
+}
+
+function collapseScore(){
+    let beeper = true;
+
+    score_container.setAttribute("style", "opacity: 0; transition: 1s;")
+
+    if(beeper == true){
+        score_container.addEventListener('transitionend', () => {
+            score_section.removeChild(score_container)
+            score_section.setAttribute("style", "height:0px; transition: 1s;")
+        });
+    }
 }
