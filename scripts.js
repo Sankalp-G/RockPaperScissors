@@ -19,20 +19,25 @@ function computerPlay(){
 function playRound(playerSelection, computerSelection){
     playerSelection = playerSelection.toLowerCase();
 
+    changeIcon('player', playerSelection)
+    changeIcon('cpu', computerSelection)
     
      if (playerSelection === computerSelection){
         //condition where its a tie
-        console.log("It's a tie! Both played " + playerSelection);
+        console.log("The round is tied!");
+        description.textContent = "The round is tied!";
         return("tie")
     }
     else if (playerSelection === "rock" && computerSelection === "scissors" || playerSelection === "paper" && computerSelection === "rock" || playerSelection === "scissors" && computerSelection === "paper"){
         //condition where player wins
-        console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
+        console.log(`You won the round!`);
+        description.textContent = `You Won the round!`;
         return("player")
     }
     else if (playerSelection === "scissors" && computerSelection === "rock" || playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors"){
         //condition where player losses
-        console.log(`You lose! ${computerSelection} beats ${playerSelection}`);
+        console.log(`You lost the round!`);
+        description.textContent = `You lost the round!`;
         return("com")
     }
     else if(playerSelection !== "rock" || "paper" || "scissors"){
@@ -43,56 +48,123 @@ function playRound(playerSelection, computerSelection){
 
 //increments counter based on who wins
 function incrementer(input){
+    const score = document.querySelector('#score')
+    let splitScore = score.innerText.split(" ")
+
     if (input === "player"){
         playerScore += 1;
+        splitScore[0] = String(playerScore)
     }
     else if (input === "com"){
         comScore += 1;
+        splitScore[2] = String(comScore)
     }
     else if (input === "tie") {
         playerScore += 1;
         comScore += 1;
+        splitScore[0] = String(playerScore)
+        splitScore[2] = String(comScore)
     }
-    else {}
+
+    score.textContent = splitScore.join(' ')
 }
 
 let playerScore = 0;        //player counter
 let comScore = 0;           //cpu counter
 
 //plays 5 rounds and prints winner
-function game(){
-let roundResult;
+function game(roundNum){
+    playerScore = 0;
+    comScore = 0;
 
-roundResult = playRound(window.prompt("State your move"), computerPlay());
-incrementer(roundResult);
-roundResult = playRound(window.prompt("State your move"), computerPlay());
-incrementer(roundResult);
-roundResult = playRound(window.prompt("State your move"), computerPlay());
-incrementer(roundResult);
-roundResult = playRound(window.prompt("State your move"), computerPlay());
-incrementer(roundResult);
-roundResult = playRound(window.prompt("State your move"), computerPlay());
-incrementer(roundResult);
+    // for(i = 0; i < roundNum; i++){
+    //     roundResult = playRound(window.prompt("State your move"), computerPlay());
+    //     incrementer(roundResult);
+    // }
 
-if (playerScore > comScore){
-console.log(`YOU WON THE GAME, you scored ${playerScore} and cpu scored ${comScore}`);
-}
-else if (comScore < playerScore){
-console.log(`YOU LOST THE GAMEE, you scored ${playerScore} and cpu scored ${comScore}`);
-}
-else if (comScore === playerScore){
-console.log(`IT'S A TIE, both scored ${playerScore}`);
-}
-else{
-console.log("something went wrong");
-}
 
-playerScore = 0;
-comScore = 0;
+    const game_buttons = game_button_container.childNodes;
+
+    let i = 0;
+    i = 0;
+
+
+    game_buttons.forEach((button1) => {
+        button1.addEventListener('click', function(){
+            i++
+            initGame(button1, roundNum, i)
+        })
+
+    })
 }
 
 
 
+function initGame(button1, roundNum, i) {
+    let attribute1 = button1.getAttribute('style')
+    console.log(attribute1)
+    let roundResult;
+    console.log(i)
+    if(i < roundNum){
+        if (attribute1 == 'background-color: #ff5460;'){
+            roundResult = playRound('rock', computerPlay());
+            incrementer(roundResult);
+        }
+        else if (attribute1 == 'background-color: #85a3cd;'){
+            roundResult = playRound('paper', computerPlay());
+            incrementer(roundResult);
+        }
+        else if (attribute1 == 'background-color: #a7e164;'){
+            roundResult = playRound('scissors', computerPlay());
+            incrementer(roundResult);
+        }
+    }
+    else if (i == roundNum) {
+        if (attribute1 == 'background-color: #ff5460;'){
+            roundResult = playRound('rock', computerPlay());
+            incrementer(roundResult);
+        }
+        else if (attribute1 == 'background-color: #85a3cd;'){
+            roundResult = playRound('paper', computerPlay());
+            incrementer(roundResult);
+        }
+        else if (attribute1 == 'background-color: #a7e164;'){
+            roundResult = playRound('scissors', computerPlay());
+            incrementer(roundResult);
+        }
+
+        if (Number(playerScore) > Number(comScore)){
+            console.log(`YOU WON THE GAME, you scored ${playerScore} and cpu scored ${comScore}`);
+            description.textContent = `YOU WON THE GAME`;
+        }
+        else if (Number(playerScore) < Number(comScore)){
+            console.log(`YOU LOST THE GAME, you scored ${playerScore} and cpu scored ${comScore}`);
+            description.textContent = `YOU LOST THE GAME`;
+        }
+        else if (Number(comScore) == Number(playerScore)){
+            console.log(`IT'S A TIE, both scored ${playerScore}`);
+            description.textContent = `IT'S A TIE`;
+        }
+        else{
+            console.log("something went wrong");
+        }
+    
+        playerScore = 0;
+        comScore = 0;
+
+        const game_buttons = game_button_container.childNodes;
+
+        game_buttons.forEach((button1) => {
+            let old_element = button1;
+            let new_element = old_element.cloneNode(true);
+            old_element.parentElement.replaceChild(new_element, old_element)
+        })
+
+        return
+        
+    }
+
+}
 
 
 //dom manipulation section
@@ -119,6 +191,7 @@ const button_container = document.querySelector('#button_container')
 const menu_button_container = document.querySelector('#menu_button_container')
 const menu_button_img = document.querySelectorAll('#menu_button_img')
 const subtitle_container = document.querySelector('#subtitle_container')
+const description_container = document.querySelector("#description_container")
 
 const game_button_container = document.createElement('div')
 const rock_button = document.createElement('div')
@@ -152,11 +225,19 @@ rock_button.appendChild(rock_img)
 paper_button.appendChild(paper_img)
 scissor_button.appendChild(scissor_img)
 
+const circle = document.createElement('div')
+circle.setAttribute('style', 'height: 75px; width: 75px: border:none; border-radius: 50%;')
+
+const game_button = document.querySelectorAll('#button2')
 
 function gameMode(){
-    button_container.classList.add('button_container2');
 
     let booper = true;
+
+    button_container.classList.add('button_container2');
+
+    description_container.setAttribute("style", "padding-top: 0px;")
+    description.textContent = "";
 
     menu_button_img.forEach((button) => {
 
@@ -177,11 +258,14 @@ function gameMode(){
         });
     });
     subtitle_container.setAttribute("style", "opacity: 0;")
-
+    description_container.setAttribute("style", "padding-top: 0px;")
+    description.textContent = "play your move";
 }
 
  function menuMode(){
 
+    description_container.setAttribute("style", "padding-top: 70px;")
+    description.textContent = "";
 
     if(button_container.firstElementChild !== menu_button_container){
         button_container.appendChild(menu_button_container)
@@ -244,3 +328,77 @@ function collapseScore(){
         });
     }
 }
+
+
+function changeIcon(user, icon){
+    const player_icon = document.querySelector('#player_icon')
+    const cpu_icon = document.querySelector('.cpu_icon')
+
+    let small_rock_img = rock_img.cloneNode()
+    small_rock_img.style.height = '97%'
+    small_rock_img.style.width = 'auto'
+    let small_paper_img = paper_img.cloneNode()
+    small_paper_img.style.height = '82%'
+    small_paper_img.style.width = 'auto'
+    let small_scissor_img = scissor_img.cloneNode()
+    small_scissor_img.style.height = '74%'
+    small_scissor_img.style.width = 'auto'
+
+    if (user == 'player'){
+        if(player_icon.hasChildNodes() == true){
+            player_icon.textContent = '';
+        }
+        if(icon == 'rock'){
+            player_icon.appendChild(small_rock_img)
+        }
+        else if(icon == 'paper'){
+            player_icon.appendChild(small_paper_img)
+        }
+        else if(icon == 'scissors'){
+            player_icon.appendChild(small_scissor_img)
+        }
+    }
+    if (user == 'cpu'){
+        if(cpu_icon.hasChildNodes() == true){
+            cpu_icon.textContent = '';
+        }
+        if(icon == 'rock'){
+            cpu_icon.appendChild(small_rock_img)
+        }
+        else if(icon == 'paper'){
+            cpu_icon.appendChild(small_paper_img)
+        }
+        else if(icon == 'scissors'){
+            cpu_icon.appendChild(small_scissor_img)
+        }
+    }
+}
+
+
+//adding game logic to elements
+
+menu_button_img.forEach((button) => {
+    button.addEventListener('click', async () => {
+        let attribute = button.getAttribute('src')
+
+        if (attribute == 'assets/icons/single_icon.png'){
+            gameMode()
+            expandScore()
+            game(1)
+        }
+        else if (attribute == 'assets/icons/5round_icon.png'){
+            gameMode()
+            expandScore()
+            game(5)
+        }
+        else if (attribute == 'assets/icons/endless_icon.png'){
+            gameMode()
+            expandScore()
+            game(10000000)
+        }
+        else {console.log('weird')}
+    })
+})
+
+
+
