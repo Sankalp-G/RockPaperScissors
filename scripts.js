@@ -101,6 +101,8 @@ function game(roundNum){
 
 
 function initGame(button1, roundNum, i) {
+    const player_icon = document.querySelector('#player_icon')
+    const cpu_icon = document.querySelector('.cpu_icon')
     let attribute1 = button1.getAttribute('style')
     console.log(attribute1)
     let roundResult;
@@ -133,21 +135,36 @@ function initGame(button1, roundNum, i) {
             incrementer(roundResult);
         }
 
+        subtitle_container.setAttribute('style', 'opacity: 0; height: 60px;')
+
         if (Number(playerScore) > Number(comScore)){
             console.log(`YOU WON THE GAME, you scored ${playerScore} and cpu scored ${comScore}`);
             description.textContent = `YOU WON THE GAME`;
+            player_icon.setAttribute('style', 'border: solid 5px gold; background-color: #1356a9;')
+            description.setAttribute('style', 'color: darkgreen;')
         }
         else if (Number(playerScore) < Number(comScore)){
             console.log(`YOU LOST THE GAME, you scored ${playerScore} and cpu scored ${comScore}`);
             description.textContent = `YOU LOST THE GAME`;
+            cpu_icon.setAttribute('style', 'border: solid 5px gold; background-color: #b92525;')
+            description.setAttribute('style', 'color: darkred;')
         }
         else if (Number(comScore) == Number(playerScore)){
             console.log(`IT'S A TIE, both scored ${playerScore}`);
             description.textContent = `IT'S A TIE`;
+            player_icon.setAttribute('style', 'border: solid 5px gold; background-color: #1356a9;')
+            cpu_icon.setAttribute('style', 'border: solid 5px gold; background-color: #b92525;')
+            description.setAttribute('style', 'color: goldenrod;')
         }
         else{
             console.log("something went wrong");
         }
+
+        const f5 = document.createElement('div')
+        f5.textContent = "press f5 to try again";
+        f5.setAttribute('id', 'description')
+        f5.setAttribute('style', 'padding-top: 30px;')
+        description_container.appendChild(f5)
     
         playerScore = 0;
         comScore = 0;
@@ -329,6 +346,8 @@ function collapseScore(){
     }
 }
 
+const player_icon = document.querySelector('#player_icon')
+const cpu_icon = document.querySelector('.cpu_icon')
 
 function changeIcon(user, icon){
     const player_icon = document.querySelector('#player_icon')

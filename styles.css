@@ -134,6 +134,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     padding-top: 70px;
     opacity: 1;
     transition: 1s;
@@ -184,7 +185,6 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     font-size: 30px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
